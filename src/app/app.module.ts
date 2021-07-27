@@ -3,9 +3,9 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import {FormsModule} from '@angular/forms';
-import { MainParentComponent } from './main-parent/main-parent.component';
-import { SecondaryParentComponent } from './secondary-parent/secondary-parent.component';
-import { ChildrenComponent } from './children/children.component';
+import { MainParentComponent } from './components/main-parent/main-parent.component';
+import { SecondaryParentComponent } from './components/secondary-parent/secondary-parent.component';
+import { ChildrenComponent } from './components/children/children.component';
 
 @NgModule({
   declarations: [

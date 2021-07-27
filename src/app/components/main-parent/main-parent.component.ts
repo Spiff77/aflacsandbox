@@ -7,9 +7,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainParentComponent implements OnInit {
 
+  p1 = {
+    name: 'Jack',
+    age: 30
+  };
+  p2 = {
+    name: 'Daniel',
+    age: 32
+  };
+
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  getAgeFromChildren(age: number): void {
+    console.log('PARENT', age);
+  }
 }
