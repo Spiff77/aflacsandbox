@@ -1,0 +1,8 @@
+:host{
+  display:block;
+  border:4px dashed black;
+  background-color: #c0f1ff;
+  ::ng-deep p{
+    color: green;
+  }
+}
