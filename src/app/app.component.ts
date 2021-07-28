@@ -1,45 +1,42 @@
-import { Component } from '@angular/core';
+import {AfterViewInit, Component, ElementRef, EventEmitter, OnDestroy, OnInit, QueryList, ViewChildren} from '@angular/core';
 import {Client} from './model/Client';
 import {Supplier} from './model/Supplier';
+import {interval, of, Subscription} from 'rxjs';
+import {filter, map} from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
-  title = 'My super app';
-  count = 0;
+export class AppComponent implements OnInit, OnDestroy, AfterViewInit{
 
-  selectValue = '';
+  @ViewChildren('theDiv, thename') divs!: QueryList<HTMLDivElement>;
 
-  color = undefined;
+  em = new EventEmitter<string>();
 
-  classList = ['bold red'];
+  age  = 20;
+  names: string[] = [];
 
-  c = new Client('Thomas', 'Lhomme', true, 36);
-  s = new Supplier(1, 'Aflac', '4444444', 100);
-
-  addOne(): void {
-    this.count++;
+  constructor() {
   }
 
-  computeStyle(): string {
-    console.log('Hello');
-    if (this.s.ca < 1000){
-      return 'low';
-    }else if (this.s.ca >= 1000 && this.s.ca < 5000){
-      return 'medium';
-    }else{
-      return 'high';
+  ngAfterViewInit(): void {
+        console.log(this.divs.length);
     }
+
+  ngOnInit(): void {
+    this.em.subscribe( v => {
+      console.log('Retrieveing data from observable');
+      this.names.push(v);
+    });
   }
 
-  toggle(): void {
-    this.c.active = !this.c.active;
+  ngOnDestroy(): void {
+
   }
 
-  divClick(event: any): void {
-    console.log(event.target.innerHTML);
+  addName(name: string): void {
+    this.em.next(name);
   }
 }
