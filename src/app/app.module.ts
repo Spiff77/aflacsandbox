@@ -8,6 +8,9 @@ import { SecondaryParentComponent } from './components/secondary-parent/secondar
 import { ChildrenComponent } from './components/children/children.component';
 import { PersonNameComponent } from './components/person-name/person-name.component';
 import { ColorizeDirective } from './colorize.directive';
+import { BComponent } from './components/b/b.component';
+import { AComponent } from './components/a/a.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -16,11 +19,14 @@ import { ColorizeDirective } from './colorize.directive';
     SecondaryParentComponent,
     ChildrenComponent,
     PersonNameComponent,
-    ColorizeDirective
+    ColorizeDirective,
+    BComponent,
+    AComponent
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

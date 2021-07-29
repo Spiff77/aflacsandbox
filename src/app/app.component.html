@@ -1,18 +1,6 @@
-<input type="text" #thename>
-
-<div #theDiv>a</div>
-<div>b</div>
-<div #theDiv>c</div>
-<div>d</div>
-<div #theDiv>e</div>
-<div>f</div>
-<div>g</div>
-<div>h</div>
-<div>zdg</div>
-
-
-<button (click)="addName(thename.value)">Send</button>
-
+<h1>App component</h1>
 <ul>
   <li *ngFor="let n of names">{{n}}</li>
 </ul>
+<app-a></app-a>
+
