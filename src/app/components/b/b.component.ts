@@ -16,7 +16,7 @@ export class BComponent implements OnInit {
   }
 
   addPerson(): void {
-    this.ps.add(this.name);
+   // this.ps.add(this.name);
   }
 
 

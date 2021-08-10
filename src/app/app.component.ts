@@ -1,6 +1,7 @@
 import {Component,  OnInit} from '@angular/core';
 
-import {PersonService} from './person.service';
+import {AuthService} from './auth.service';
+import {User} from './model/user.model';
 
 @Component({
   selector: 'app-root',
@@ -9,14 +10,27 @@ import {PersonService} from './person.service';
 })
 export class AppComponent implements OnInit {
 
-  names: string[] = [];
+  currentUserValue!: User|null;
 
-  constructor(private ps: PersonService) {
+  constructor(private authService: AuthService) {
   }
 
+
   async ngOnInit(): Promise<void> {
-    this.names = await this.ps.findAll();
-    console.log('end NgOnInit');
+    this.authService.currentUser.subscribe( v => {
+      console.log('NEW STATUS:', v);
+      this.currentUserValue = v;
+    });
+  }
+
+  login(): void {
+    this.authService.login('admin', 'abcd1234').subscribe( v => console.log(v));
+  }
+  logout(): void {
+    this.authService.logout();
   }
 
 }
+
+
+

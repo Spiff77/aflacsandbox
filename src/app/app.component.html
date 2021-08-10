@@ -1,6 +1,5 @@
-<h1>App component</h1>
-<ul>
-  <li *ngFor="let n of names">{{n}}</li>
-</ul>
-<app-a></app-a>
-
+<h1>Fruit and animal manager</h1>
+<div *ngIf="currentUserValue">You are logged</div>
+<button (click)="login()">Login</button>
+<button (click)="logout()">Logout</button>
+<router-outlet></router-outlet>
