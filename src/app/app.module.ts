@@ -10,7 +10,7 @@ import { PersonNameComponent } from './components/person-name/person-name.compon
 import { ColorizeDirective } from './colorize.directive';
 import { BComponent } from './components/b/b.component';
 import { AComponent } from './components/a/a.component';
-import { HttpClientModule } from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { HomeComponent } from './components/home/home.component';
 import {RouterModule, Routes} from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -20,6 +20,9 @@ import {MatInputModule} from '@angular/material/input';
 import {MatCardModule} from '@angular/material/card';
 import { DialogAddItemComponent } from './components/dialog-add-item/dialog-add-item.component';
 import {MatDialogModule} from '@angular/material/dialog';
+import {JwtInterceptor} from './jwt.interceptor';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -53,8 +56,14 @@ const routes: Routes = [
     MatInputModule,
     MatCardModule,
     MatDialogModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production,
+      // Register the ServiceWorker as soon as the app is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
+    }),
   ],
-  providers: [],
+  providers: [{provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

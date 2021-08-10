@@ -44,3 +44,8 @@ export class AuthService {
   }
 
 }
+
+
+// AuthComponent ===>    Form Login, Password
+// if not logged, the form shows
+// other whise the logout button with the username shows

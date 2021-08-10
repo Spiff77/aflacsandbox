@@ -1,5 +1,6 @@
-<h1>Fruit and animal manager</h1>
-<div *ngIf="currentUserValue">You are logged</div>
+<h1>Fruits and animals manager !!!!</h1>
+<div *ngIf="currentUserValue">You are logged as {{currentUserValue.username}}</div>
+<div *ngIf="updateAvailable"> There are new updates, <a href="#" (click)="refreshApp()">please update by clicking here</a></div>
 <button (click)="login()">Login</button>
 <button (click)="logout()">Logout</button>
 <router-outlet></router-outlet>

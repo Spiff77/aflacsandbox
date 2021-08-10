@@ -2,6 +2,7 @@ import {Component,  OnInit} from '@angular/core';
 
 import {AuthService} from './auth.service';
 import {User} from './model/user.model';
+import {SwUpdate} from '@angular/service-worker';
 
 @Component({
   selector: 'app-root',
@@ -11,10 +12,17 @@ import {User} from './model/user.model';
 export class AppComponent implements OnInit {
 
   currentUserValue!: User|null;
+  updateAvailable = false;
 
-  constructor(private authService: AuthService) {
+  constructor(private authService: AuthService, private swupdate: SwUpdate) {
+    swupdate.available.subscribe(v => {
+      this.updateAvailable = true;
+    });
   }
 
+  refreshApp(): void {
+    window.location.reload();
+  }
 
   async ngOnInit(): Promise<void> {
     this.authService.currentUser.subscribe( v => {
